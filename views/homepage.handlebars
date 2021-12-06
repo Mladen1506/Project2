@@ -1,0 +1,65 @@
+{{#each posts as |post|}}
+<div class="card mb-6">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+      </div>
+      <div class="media-content">
+        <p class="title is-3 has-text-link-dark">{{post.title}}</p>
+        <p class="subtitle is-5 has-text-primary">by {{post.user.username}}</p>
+      </div>
+    </div>
+    <div class="content">
+      <ol class="post-list">
+        
+        <li class="subtitle is-5">
+          Location: {{post.location}}
+          <br>
+          Cost: ${{post.cost}}
+          <br>
+          Description: {{post.description}}
+        </li>
+       
+      <br>
+       <div class="meta has-text-primary">Created on: {{format_date post.created_at}}</div>
+    </div>
+  </div>
+  {{#if isMine}}
+  <footer class="card-footer">
+    <a href="/post/{{post.id}}" class="card-footer-item button is-link is-outlined">Edit</a>
+  </footer>
+  {{/if}}
+</div>
+{{/each}}
+
+<article class="post">
+  <div class="title">
+    <span>{{location}}</span>
+  </div>
+  <div class="meta">
+    {{!-- by {{user.username}} on {{created_at}} --}}
+  </div>
+</article>
+
+{{#if loggedIn}}
+<section>
+<p class="title is-4 has-text-link-dark">Create New Post</p>
+  <form class="new-post-form">
+    <div>
+     <input name="post-title" class="input is-primary" type="text" placeholder="Post Title">
+    </div>
+    <div>
+      <input name="post-location" class="input is-primary" type="text" placeholder="Travel Location">
+    </div>
+    <div>
+      <input name="post-cost" class="input is-primary" type="text" placeholder="Cost of Trip">
+    </div>
+    <div>
+      <textarea name="post-description" class="textarea is-primary" placeholder="Trip Description"></textarea>
+    </div>
+    <button class="button is-link">Create</button>
+  </form>
+</section>
+{{/if}}
+
+<script src="/javascript/homepage.js"></script>
